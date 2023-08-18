@@ -1,6 +1,24 @@
 # Homework 1: due August 18, 2023
 # Author: Irene Gerrish
 
+import random
+
+class Portfolio:
+    def __init__(self, client_id, cash_balance=0, mutual_fund=0, stocks=0):
+        self.client = Client(client_id, cash_balance, mutual_fund, stocks)
+
+class MutualFund:
+    def __init__(self, mutual_fund):
+        self.mutual_fund = mutual_fund
+
+    def buyMutualFund(self):
+        self.buyMutualFund += buyMutualFund
+
+
+class Stock:
+
+# for memory: .append(history)
+
 class Client:
     def __init__(self, client_id, cash_balance, mutual_funds, stocks):
         self.client_id = client_id
@@ -8,7 +26,6 @@ class Client:
         self.mutual_funds = mutual_funds
         self.stocks = stocks
         portfolio = self.cash_balance + self.mutual_funds + self.stocks
-
 
     def calculate_portfolio_value(self):
         return self.cash_balance + self.mutual_funds + self.stocks
@@ -24,8 +41,6 @@ class Client:
 class Portfolio:
     def __init__(self, client_id, cash_balance=0, mutual_funds=0, stocks=0):
         self.client = Client(client_id, cash_balance, mutual_funds, stocks)
-
-
 
 # Example usage
 client_id = 1
