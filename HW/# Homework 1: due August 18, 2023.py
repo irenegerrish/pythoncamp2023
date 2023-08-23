@@ -6,63 +6,54 @@ import random
 class Portfolio:
     def __init__(self, client_id, cash_balance=0, mutual_fund=0, stocks=0):
         self.client = Client(client_id, cash_balance, mutual_fund, stocks)
+        self.Stocks = []
+        self.MutualFunds = []
+        self.withdrawCash = []
+        self.balance = 0
+
+    def addCash(self, cash):
+        self.balance += cash
+        print(self.balance)
+
+    def history(self):
+        return self.balance, self.withdrawCash, self.mutual_fund, self.stock
 
 class MutualFund:
     def __init__(self, mutual_fund):
         self.mutual_fund = mutual_fund
+        self.randomprice = random.uniform(0.9, 1.2)
 
-    def buyMutualFund(self):
+    def buyMutualFund(self, amount):
         self.buyMutualFund += buyMutualFund
+        self.amount = amount
 
+    def sellMutualFund(self, amount):
+        self.sellMutualFund -= sellMutualFund
+        self.amount = amount
 
 class Stock:
+    def __init__(self, stock):
+        self.stock = stock
 
-# for memory: .append(history)
+    def buyStock(self, stock):
+        self.buyStock = buyStock 
 
-class Client:
-    def __init__(self, client_id, cash_balance, mutual_funds, stocks):
-        self.client_id = client_id
-        self.cash_balance = cash_balance
-        self.mutual_funds = mutual_funds
-        self.stocks = stocks
-        portfolio = self.cash_balance + self.mutual_funds + self.stocks
+    def sellStock(self, stock, cash):
+        self.sellStock += stock
+        self.withdrawCash -= cash
+        return self.sellStock + self.withdrawCash
 
-    def calculate_portfolio_value(self):
-        return self.cash_balance + self.mutual_funds + self.stocks
+# Commands to run
 
-    def buy_mutual_funds(self, amount):
-        self.mutual_funds += amount
-        self.cash_balance -= amount
-
-    def sell_stocks(self, amount):
-        self.stocks -= amount
-        self.cash_balance += amount
-
-class Portfolio:
-    def __init__(self, client_id, cash_balance=0, mutual_funds=0, stocks=0):
-        self.client = Client(client_id, cash_balance, mutual_funds, stocks)
-
-# Example usage
-client_id = 1
-portfolio = clients.get(client_id)
-if portfolio:
-    print("Original Portfolio:")
-    print("Cash Balance:", portfolio.client.cash_balance)
-    print("Mutual Funds:", portfolio.client.mutual_funds)
-    print("Stocks:", portfolio.client.stocks)
-
-    # Buy $1000 worth of mutual funds
-    portfolio.client.buy_mutual_funds(1000)
-    print("Portfolio after buying mutual funds:")
-    print("Cash Balance:", portfolio.client.cash_balance)
-    print("Mutual Funds:", portfolio.client.mutual_funds)
-    print("Stocks:", portfolio.client.stocks)
-
-    # Sell $2000 worth of stocks
-    portfolio.client.sell_stocks(2000)
-    print("Portfolio after selling stocks:")
-    print("Cash Balance:", portfolio.client.cash_balance)
-    print("Mutual Funds:", portfolio.client.mutual_funds)
-    print("Stocks:", portfolio.client.stocks)
-else:
-    print("Client not found.")
+portfolio = Portfolio() # creates new portfolio
+portfolio.addCash(300.50) # adds cash to portfolio
+portfolio.withdrawCash(50) # withdraw $50 from cash
+stock = Stock(20, 'HFH') # creates new stock
+portfolio.buyStock(5, stock) # buys 5 shares of stocks 
+mf1 = MutualFund('BRT') # creates mutual fund called 'BRT'
+mf2 = MutualFund('GHT') # creates mutual fund called 'GHT'
+portfolio.buyMutualFund(10.3, mf1) # buy 10.3 shares of BRT
+portfolio.buyMutualFund(2, mf2) # buy 2 shares of GHT
+portfolio.sellMutualFund('BRT', 3) # sell 3 shares of BRT
+portfolio.sellMutualFund('HFH', 1) # sell 1 share of HFH
+portfolio.history() # prints transaction history    
